@@ -1,7 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 import {z} from "zod";
 import {CONFIG} from "@/config";
-import {gitHubApiUrlParamsSchema} from "@/utils/urlParams";
+import {getUrlParams} from "@/utils/getUrlParams";
 
 // Schema definition for the Github API response (Any data not included in this schema will be ignored)
 const githubResponseSchema = z.object({
@@ -23,7 +23,7 @@ const githubResponseSchema = z.object({
 
 export async function GET({url}: NextRequest) {
   const {searchParams} = new URL(url);
-  const {query, page, order, sort, limit} = gitHubApiUrlParamsSchema.parse(Object.fromEntries(searchParams));
+  const {query, page, order, sort, limit} = getUrlParams(searchParams);
 
   const apiOrder = order ? `&order=${order}` : "";
   const apiSort = sort ? `&sort=${sort}` : "";
