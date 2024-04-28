@@ -9,6 +9,9 @@ type PaginationProps = {
   maxPage: number;
 };
 
+/**
+ * This is very primitive pagination component, as it doesn't support jumping to a specific page.
+ */
 const Pagination = ({currentPage, maxPage}: PaginationProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
