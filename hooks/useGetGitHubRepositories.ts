@@ -9,7 +9,7 @@ async function fetGitHubRepositories(urlParams: GitHubApiUrlParams): Promise<Git
     .map(([key, value]) => `&${key}=${value}`)
     .join("");
 
-  const response = await fetch(`/repositories?${queryParams}}`);
+  const response = await fetch(`/repositories?${queryParams}`);
   return response.json();
 }
 
