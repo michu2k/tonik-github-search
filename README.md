@@ -17,7 +17,7 @@
 
 ## Environment variables
 
-Copy the keys from `.env.example` to the .`env.local` file and generate these values:
+Copy the keys from `.env.example` to the `.env.local` file and generate these values:
 
 - `GITHUB_API_URL` - GitHub search API (https://api.github.com/search) - without `/` at the end.
 - `GITHUB_API_TOKEN`- You can generate the GitHub token [here](https://github.com/settings/tokens?type=beta).
