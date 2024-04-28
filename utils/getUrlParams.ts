@@ -12,6 +12,7 @@ const gitHubApiUrlParamsSchema = z.object({
   limit: z.number().catch(CONFIG.COLLECTION_SIZE.DEFAULT),
 });
 
+/** Extract and validate the URL parameters */
 function getUrlParams(searchParams: URLSearchParams): GitHubApiUrlParams {
   return gitHubApiUrlParamsSchema.parse(Object.fromEntries(searchParams));
 }
