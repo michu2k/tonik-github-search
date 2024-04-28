@@ -3,11 +3,18 @@
 import React from "react";
 import {format} from "date-fns";
 import {useGetGitHubRepositories} from "@/hooks/useGetGitHubRepositories";
-import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "./ui/Table";
+import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/Table";
+import {Pagination} from "./Pagination";
+import {useSearchParams} from "next/navigation";
+import {getUrlParams} from "@/utils/getUrlParams";
 
 const Repositories = () => {
+  const searchParams = useSearchParams();
   const {data, isError, isFetching} = useGetGitHubRepositories();
-  const {items: repositories = []} = data || {};
+  const {items: repositories = [], total_count = 0} = data || {};
+
+  const {limit, page} = getUrlParams(searchParams);
+  const maxPage = Math.ceil(total_count / limit);
 
   function displayTableBody() {
     if (isError) {
@@ -39,7 +46,7 @@ const Repositories = () => {
 
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Name</TableHead>
+            <TableHead className="w-1/3">Name</TableHead>
             <TableHead>Owner</TableHead>
             <TableHead>Stars</TableHead>
             <TableHead className="text-right">Created at</TableHead>
@@ -48,6 +55,8 @@ const Repositories = () => {
 
         <TableBody>{displayTableBody()}</TableBody>
       </Table>
+
+      {repositories.length > 0 ? <Pagination currentPage={page} maxPage={maxPage} /> : null}
     </div>
   );
 };
