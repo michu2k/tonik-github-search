@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Github repository search
 
-## Getting Started
+## Stack
 
-First, run the development server:
+- `Next.js` - Very popular, easy to scale framework, so it works great in both small and large applications.
+- `Tailwind` - CSS framework that provides utilty classes that allow developers to create applications easier and faster.
+- `Shadcn/ui`, `radix` - Set of re-usable components built using Tailwind with additional interactions handled by the Radix UI.
+- `Zod` - A very good library for validating not only forms, but also API requests. I have been using Zod for a long time and that's why it was my number one choice.
+- `TanStack Query` - It simplifies data fetching and caching without the need to build complex solutions yourself.
+- `Vitest` - I used this package for unit testing as the package api seems a little bit simplier that Jest and I already had experience using vitest.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Run the project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository and install all dependencies using pnpm
+2. Setup the environment variables
+3. Start the development server using `pnpm run dev`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Copy the keys from `.env.example` to the .`env.local` file and generate these values:
 
-## Learn More
+- `GITHUB_API_URL` - GitHub search API (https://api.github.com/search) - without `/` at the end.
+- `GITHUB_API_TOKEN`- You can generate the GitHub token [here](https://github.com/settings/tokens?type=beta).
 
-To learn more about Next.js, take a look at the following resources:
+## Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The app uses Vitest for unit testing. To run unit tests, run `pnpm run test` command.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Example routes
 
-## Deploy on Vercel
+Instead of the URL you should use your localhost url (default localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `URL/?query=React` - Get the list of repositories
+- `URL/?query=React&page=3` - Get a third repository page
+- `URL/?query=React&sort=stars` - Get repositories sorted by stars
+- `URL/?query=React&order=asc` - Order records by asc (or desc)
+- `URL/?query=React&limit=5` - Number of records
+- `URL/?query=React&page=3&sort=stars&order=asc&limit=5` - ^All of the above included
