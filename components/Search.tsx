@@ -21,14 +21,14 @@ const Search = ({name}: SearchProps) => {
   const changeQueryParams = useDebouncedCallback((inputValue: string) => {
     const urlSearchParams = new URLSearchParams(searchParams);
 
-    // Always reset the page to 1 when searching
-    urlSearchParams.set("page", "1");
-
     if (!inputValue) {
       urlSearchParams.delete(name);
     } else {
       urlSearchParams.set(name, inputValue);
     }
+
+    // Always reset the page to 1 when searching
+    urlSearchParams.set("page", "1");
 
     replace(`${pathname}?${urlSearchParams.toString()}`);
   }, 350);
