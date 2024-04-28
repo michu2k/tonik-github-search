@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint:check": "next lint",
+    "lint:fix": "next lint",
+    "format:check": "prettier \"**/*.{ts,tsx}\" --check --cache",
+    "format:fix": "prettier \"**/*.{ts,tsx}\" --write --cache"
   },
   "dependencies": {
     "next": "14.2.3",
