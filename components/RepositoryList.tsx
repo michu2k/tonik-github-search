@@ -2,13 +2,14 @@
 
 import React from "react";
 import {format} from "date-fns";
+import {useSearchParams} from "next/navigation";
 import {useGetGitHubRepositories} from "@/hooks/useGetGitHubRepositories";
 import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/Table";
-import {Pagination} from "./Pagination";
-import {useSearchParams} from "next/navigation";
 import {getUrlParams} from "@/utils/getUrlParams";
+import {RepositoryFilters} from "./RepositoryFilters";
+import {Pagination} from "./Pagination";
 
-const Repositories = () => {
+const RepositoryList = () => {
   const searchParams = useSearchParams();
   const {data, isError, isFetching} = useGetGitHubRepositories();
   const {items: repositories = [], total_count = 0} = data || {};
@@ -39,7 +40,9 @@ const Repositories = () => {
 
   return (
     <div className="relative space-y-8">
-      {isFetching ? <p className="absolute -top-2 z-10 text-xs">Fetching repositories...</p> : ""}
+      <RepositoryFilters />
+
+      {isFetching ? <p className="absolute top-2 z-10 text-xs">Fetching repositories...</p> : ""}
 
       <Table>
         <TableCaption>List of GitHub repositories. Use the search bar to filter the results.</TableCaption>
@@ -61,4 +64,4 @@ const Repositories = () => {
   );
 };
 
-export {Repositories};
+export {RepositoryList};

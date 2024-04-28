@@ -1,5 +1,5 @@
 import {Search} from "@/components/Search";
-import {Repositories} from "@/components/Repositories";
+import {RepositoryList} from "@/components/RepositoryList";
 import {Suspense} from "react";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       </Suspense>
 
       <Suspense>
-        <Repositories />
+        <RepositoryList />
       </Suspense>
     </main>
   );
