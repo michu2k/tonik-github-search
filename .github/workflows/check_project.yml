@@ -36,5 +36,5 @@ jobs:
       - name: Check Prettier errors
         run: pnpm run format:check
 
-      - name: run unit tests
+      - name: Run unit tests
         run: pnpm run test
