@@ -29,7 +29,7 @@ export async function GET({url}: NextRequest) {
   const apiSort = sort ? `&sort=${sort}` : "";
 
   const response = await fetch(
-    `${CONFIG.GITHUB_API_URL}/repositories?q=${query}&page=${page}&limit=${limit}${apiOrder}${apiSort}`,
+    `${CONFIG.GITHUB_API_URL}/repositories?q=${query}&page=${page}&per_page=${limit}${apiOrder}${apiSort}`,
     {
       headers: {
         Authorization: `token ${CONFIG.GITHUB_API_TOKEN}`,
