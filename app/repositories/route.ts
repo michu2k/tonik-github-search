@@ -3,8 +3,10 @@ import {z} from "zod";
 import {CONFIG} from "@/config";
 import {getUrlParams} from "@/utils/getUrlParams";
 
+type GithubRepositories = z.infer<typeof githubRepositoriesSchema>;
+
 // Schema definition for the Github API response (Any data not included in this schema will be ignored)
-const githubResponseSchema = z.object({
+const githubRepositoriesSchema = z.object({
   total_count: z.number(),
   items: z.array(
     z.object({
@@ -20,6 +22,8 @@ const githubResponseSchema = z.object({
     }),
   ),
 });
+
+export type {GithubRepositories};
 
 export async function GET({url}: NextRequest) {
   const {searchParams} = new URL(url);
@@ -38,7 +42,7 @@ export async function GET({url}: NextRequest) {
   );
 
   const data = await response.json();
-  const parsedData = githubResponseSchema.parse(data);
+  const parsedData = githubRepositoriesSchema.parse(data);
 
   return NextResponse.json(parsedData);
 }
